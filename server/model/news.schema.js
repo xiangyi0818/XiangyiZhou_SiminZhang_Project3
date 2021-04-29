@@ -7,8 +7,9 @@ exports.newsSchema = new Schema({
 // newsId:Schema.Types.ObjectId,
 title:String,
 creationTime: {type:Date,default:Date.now},
-newsContent:String,
-userId: String,
+url:String,
+content:String,
+username: String,
 commentNumber:Number,
 // this explicitly declares what collection we're using
 }, { collection : 'news',versionKey: false  });

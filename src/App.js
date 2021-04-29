@@ -42,25 +42,30 @@ class App extends React.Component{
     this.getComment();
 }
 
-onClickNews=(content)=> {
-  const newNews = {
-      newsContent: content,
-  };
+// onClickNews=(content)=> {
+//   const newNews = {
+//       // title:title,
+//       content: content,
+//   };
 
-  Axios.post('http://localhost:8000/api/news', newNews)
-      .then(this.getNewsList())
-      .catch(error => console.error(error))
-}
+//   Axios.post('http://localhost:8000/api/news', newNews, {withCredentials: true})
+//       .then(this.getNewsList())
+//       .catch(error => console.error(error))
+// }
 
 
-onClickComment=(content)=> {
-  const newComment = {
-      commentContent: content,
-  };
+// onClickComment=(content)=> {
+//   const newComment = {
+//       content: content,
+//   };
 
-  Axios.post('http://localhost:8000/api/comment/', newComment)
-      .then(this.getComment())
-      .catch(error => console.error(error))
+//   Axios.post('http://localhost:8000/api/comment/', newComment)
+//       .catch(error => console.error(error))
+// }
+
+onClickLogout=()=>{
+  Axios.post(`http://localhost:8000/api/user/logout`,{} ,{withCredentials: true})
+  .catch(error => console.error(error))   
 }
 
   render(){
@@ -68,15 +73,19 @@ onClickComment=(content)=> {
 
     for(let i = 0; i < this.state.newsList.length; i++ ){
         const news = this.state.newsList[i];
-        if(news.newsContent !== undefined){
+        if(news.content !== undefined){
           renderNews.push(
               <div className="news">
-                  userId:0
-                  creationTime:{news.creationTime},
-                  newsId:{news._id},
-                  newsContent:{news.newsContent}
+                <form>
+                  <div>
+                  {news.title}
+                  </div>
+                  {/* <div>
+                  {news.content}
+                  </div> */}
+                </form>
                   <button>
-                    <Link to={{pathname:`/news/${news.newsId}`}}><p>View News</p></Link></button>
+                    <Link to={{pathname:`/news/${news._id}`}}><p>View News</p></Link></button>
                     {/* <Link to={"/news"}><p>Comments</p></Link></button> */}
               </div>
           )
@@ -87,14 +96,14 @@ onClickComment=(content)=> {
 
     for(let i = 0; i < this.state.comment.length; i++ ){
         const comment = this.state.comment[i];
-        if(comment.commentContent !== undefined){
+        if(comment.content !== undefined){
         renderComment.push(
             <div className="news">
-                userId:0,
+                {/* userId:0,
                 creationTime:0,
                 newsId: {comment.newsId},
-                commentid: {comment.commentId},
-                content: {comment.commentContent}
+                commentid: {comment.commentId}, */}
+                content: {comment.content}
             </div>
         )
       }
@@ -107,10 +116,13 @@ onClickComment=(content)=> {
         </button>
         <button><Link to={'/login/'}><strong>Log in</strong></Link>
         </button>
+        <button><Link to={'/createnews/'}><strong>Create News</strong></Link>
+        </button>
         <h1>Hacky News</h1>
+        <button onClick={() => this.onClickLogout()}>log out</button>
         <h2>{renderNews}</h2>
         {/* <h2>{renderComment}</h2> */}
-        { <Input onClick= {this.onClickNews} buttonName="post news" />}
+        {/* { <Input onClick= {this.onClickNews} buttonName="post news" />} */}
        
 
 

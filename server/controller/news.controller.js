@@ -1,13 +1,16 @@
 const express = require('express');
 const router = express.Router();
 const { v4: uuid } = require('uuid');
+const authParser = require('./auth.helper');
+
 
 const newsAccessor = require('../model/news.model');
 
 
 router.get('/:id', function (req, res) {
     return newsAccessor.findNewsById(req.params.id)
-        .then((response) => res.status(200).send(response),
+        .then(
+            (response) => res.status(200).send(response),
             (error) =>  res.status(404).send(`Error finding News:${error}`));
 });
 
@@ -25,11 +28,12 @@ router.get('/', (req, res) => {
 
 });
 
-router.post('/', (req, res) => {
+router.post('/', authParser,(req, res) => {
     // NOTE: because we're using Mongoose, it will
     // filter out any data that we DON'T want
     // So we can safely pass it the entire body
-    console.log("post news")
+    console.log("create news")
+    console.log(req.body.url,req.body.content)
     return newsAccessor.insertNews(req.body)
         .then((response) => res.status(200).send(response),
             (error) => res.status(404).send(`Error finding News:${error}`))

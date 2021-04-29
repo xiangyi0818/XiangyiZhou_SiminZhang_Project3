@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const jwt = require('jsonwebtoken');
+const authParser = require('./auth.helper');
 
 const userAccessor = require('../model/user.model');
-
 
 router.get('/:username', function (req, res) {
     return userAccessor.findUserByUsername(req.params.username)
@@ -17,16 +17,34 @@ router.get('/:username', function (req, res) {
 // });
 
 router.post('/authenticate', function (req, res) {
-    userAccessor.findUserByUsername(req.body.username)
+    const {username, password} = req.body;
+    // console.log(req.body.username)
+    // console.log(req.body.password)
+    userAccessor.findUserByUsername(username)
         .then((user) => {
-            if (user.password === req.body.password) {
-                res.status(200).send(user);
-            } else {
-                res.status(404).send('Failed to authenticate user!');
-            }
+            user.comparePassword(password, (error, match) => {
+                if (match) {
+                    const payload = {username};
+                    // JWT is encrypting our payload (which is whatever data we want
+                    // to carry across sessions: in this case, just the username)
+                    // into the cookie based on our SECRET
+                    // console.log(process.env.SUPER_SECRET)
+                    const token = jwt.sign(payload, process.env.SUPER_SECRET, {
+                        expiresIn: '14d' // optional cookie expiration date
+                    });
+                    // console.log("login token")
+                    // console.log(token);
+                    // Here we are setting the cookie on our response obect.  
+                    // Note that we are returning the username, but that isn't as necessary anymore
+                    // unless we want to reference that on the frontend
+                    res.cookie('token', token, {httpOnly: true})
+                    return res.status(200).send({username});
+                }
+                return res.status(400).send("The password does not match");
+            });
         })
-});
-
+        .catch((error) => console.error(`Something went wrong: ${error}`));
+    });
 
 router.get('/', (req, res) => {
     // if (req.query.username) {
@@ -52,13 +70,41 @@ router.post('/', (req, res) => {
             if (entry) {
                 return res.status(403).send("username already exist!")
             }
-            return userAccessor.insertUser(req.body)
+            userAccessor.insertUser(req.body)
+            console.log("sign up1")
+            const username = req.body.username;
+            const payload = {username};
+            // JWT is encrypting our payload (which is whatever data we want
+            // to carry across sessions: in this case, just the username)
+            // into the cookie based on our SECRET
+            // console.log(process.env.SUPER_SECRET)
+            console.log("sign up2")
+            const token = jwt.sign(payload, process.env.SUPER_SECRET, {
+                expiresIn: '14d' // optional cookie expiration date
+            });
+            // console.log("login token")
+            // console.log(token);
+            // Here we are setting the cookie on our response obect.  
+            // Note that we are returning the username, but that isn't as necessary anymore
+            // unless we want to reference that on the frontend
+            console.log("sign up3")
+            res.cookie('token', token, {httpOnly: true})
+            console.log("sign up 4",token)
+            return res.status(200).send({username});
 
         })
         .then((entry) => res.status(200).send(entry))
         .catch((error) => res.status(404).send(`Error finding Pokedex Entry:${error}`))
 });
 
+router.post('/logout',(req,res) => {
+    // console.log("log out")
+    // console.log("token before logout", req.cookies.token);
+    res.clearCookie("token");
+    // console.log("token after logout", req.cookies.token);
+    res.sendStatus(200);
+
+})
 
 
 module.exports = router;

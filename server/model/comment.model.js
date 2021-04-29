@@ -20,18 +20,24 @@ function getAllComments() {
 // constraint
 
 function findCommentByNewsId(newsId) {
-    return ;
+    return commentModel.find({newsId: newsId}).exec();
 }
 
 // Mongo provides a findById to query for the _id field (and you don't have
 // to use the ObjectId class here!
-function findCommentById(id) {
+function findCommentByCommentId(id) {
     return commentModel.findById(id).exec();
+}
+
+function putCommentByCommentId(id, update) {
+    return commentModel.findByIdAndUpdate(id, update).exec();
 }
 
 // Make sure to export a function after you create it!
 module.exports = {
     insertComment,
     getAllComments,
-    findCommentById
+    findCommentByCommentId,
+    findCommentByNewsId,
+    putCommentByCommentId,
 };

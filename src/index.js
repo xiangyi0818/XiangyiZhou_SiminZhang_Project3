@@ -5,6 +5,7 @@ import App from './App';
 import ViewNews from './ViewNews';
 import SignUp from './SignUp';
 import Login from './Login';
+import CreateNews from './CreateNews';
 
 ReactDOM.render(
   <React.StrictMode>
@@ -17,6 +18,7 @@ ReactDOM.render(
               <Route exact path={"/signup/"} component={SignUp}/>
               <Route exact path={"/login/"} component={Login}/>
               <Route exact path={"/"} component={App}/>
+              <Route exact path={"/createnews"} component={CreateNews}/>
               
               {/* This last case is essentially the default case.  Good to have
               if someone types in an incorrect URL.  A component can also be passed here*/}

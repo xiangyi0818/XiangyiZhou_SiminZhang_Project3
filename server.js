@@ -1,5 +1,12 @@
 const express = require('express');
+require('dotenv').config();
 const app = express();
+const mongoose = require('mongoose');
+// const mongoDBEndpoint = 'mongodb://127.0.0.1/collection_name';
+const mongoDBEndpoint = "mongodb+srv://Xiangyi:banana1234@project3.0zkrp.mongodb.net/collection_name?retryWrites=true&w=majority"
+// const mongoDBEndpoint = process.env.MONGODB_URI||'mongodb://127.0.0.1/collection_name';
+mongoose.connect(mongoDBEndpoint, { useNewUrlParser: true });
+
 const news = require('./server/controller/news.controller.js');
 const comment = require('./server/controller/comment.controller.js');
 const user = require('./server/controller/user.controller.js');
@@ -9,16 +16,13 @@ const cookieParser = require('cookie-parser');
 
 
 
-const mongoDBEndpoint = 'mongodb://127.0.0.1/collection_name';
 
-const mongoose = require('mongoose');
 
 
 // This is the default address for MongoDB.
 // Make sure MongoDB is running!
 // const mongoEndpoint = 'mongodb://127.0.0.1/pokemon_app';
 // useNewUrlParser is not required, but the old parser is deprecated
-mongoose.connect(mongoDBEndpoint, { useNewUrlParser: true });
 
 // Get the connection string
 const db = mongoose.connection;
@@ -30,7 +34,8 @@ db.on('error', console.error.bind(console, 'Error connecting to MongoDB:'));
 // const postRouter = require('./routes/posts');
 
 app.use(express.static(path.join(__dirname, 'build')));
-app.use(cors())
+// app.use(cors())
+app.use(cors({credentials: true, origin: 'http://localhost:3000'}));
 app.use(cookieParser());
 
 

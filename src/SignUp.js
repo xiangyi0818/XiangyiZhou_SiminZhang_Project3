@@ -2,6 +2,8 @@ import Axios from 'axios';
 import React from 'react';
 import Input from './Input';
 import {Link} from 'react-router-dom';
+import { useHistory } from "react-router-dom";
+import { Redirect } from 'react-router-dom'
 
 
 export default class SignUp extends React.Component{
@@ -15,15 +17,19 @@ export default class SignUp extends React.Component{
       }
 
 onClickSignUp=(username,password)=> {
+    // let history = useHistory();
     console.log("sign up user")
         const newSignUp = {
             username: username,
             password: password,
         };
       
-        Axios.post('http://localhost:8000/api/user/', newSignUp)
+        Axios.post('http://localhost:8000/api/user/', newSignUp,  {withCredentials: true})
         .then(this.getUser())
         .catch(error => console.error(error))
+
+        // history.push("/");
+
       }
 
 getUser=()=>{

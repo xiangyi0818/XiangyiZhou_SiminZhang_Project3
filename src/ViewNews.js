@@ -3,6 +3,7 @@ import { useLocation, Link } from "react-router-dom";
 import Axios from 'axios';
 import { useState } from 'react';
 import Input from './Input';
+import Comment from './Comment';
 
 
 // const ViewNews  = () => {
@@ -51,43 +52,63 @@ import Input from './Input';
 
 const ViewNews = ({ match, location }) => {
   const { params: { newsId } } = match;
-  const [news, setNews] = useState(({newsId:"", newsContent:""}));
+  const [newsContent, setNewsContent] = useState("");
+  const [newsCreationTime, setNewsCreationTime] = useState("");
+  const [newsURL, setNewsURL] = useState("");
   const [comment, setComment] = useState([]);
+  
 
-  const GetSpecificNews=(newsId)=>{  
-    Axios.get(`http://localhost:8000/api/news/${newsId}`)
+  const GetSpecificNews= (newsId)=>{  
+    const new_from_response = Axios.get(`http://localhost:8000/api/news/${newsId}`)
+        .then((response) => 
+            {
+              setNewsContent(response.data.content);
+              setNewsCreationTime(response.data.creationTime)
+              setNewsURL(response.data.url);       
+            }
+          )
+        .catch(error => console.error(error))
+    // console.log("new_from_response")
+    // console.log(new_from_response)
+    return new_from_response;
+  }
+
+  const GetCommentList=(newsId)=>{  
+    Axios.get(`http://localhost:8000/api/comment/?newsId=${newsId}`)
         .then((response) => {
-          console.log(response.data)
-            setNews(response.data)
+          console.log("map",response)
+            setComment(response.data)
           })
         .catch(error => console.error(error))
   }
 
-  const GetCommentList=(commentId)=>{  
-    Axios.get(`http://localhost:8000/api/comment/?newId=${commentId}`)
-        .then((response) => {
-          console.log(response.data)
-            setComment(response.data)})
-        .catch(error => console.error(error))
+  const onClickEdit=(commentId, content)=> {
+    const newComment = {
+        content: content,
+    };
+
+    Axios.put(`http://localhost:8000/api/comment/${commentId}`, newComment, {withCredentials: true})
+    .then(response => {
+        console.log(response);
+      })
+    .then(GetCommentList(newsId))
+    .catch(error => console.error(error))
   }
 
   const onClickComment=(content)=> {
     const newComment = {
-        userId:0,
-        newsId: 0,
-        commentContent: content,
+        content: content,
+        newsId: newsId,  
     };
-    Axios.post('http://localhost:8000/api/comment/', newComment)
-        .then(GetCommentList(newComment.newsId))
+    Axios.post(`http://localhost:8000/api/comment/`, newComment, {withCredentials: true})
+        .then(GetCommentList(newsId))
         .catch(error => console.error(error))
   }
   useEffect(()=>{
-    GetSpecificNews(newsId);
+    GetSpecificNews(newsId)
     GetCommentList(newsId);
     }, []
   );
-
-
 
   // const renderComment= [];
  
@@ -103,6 +124,9 @@ const ViewNews = ({ match, location }) => {
   //     )
   //   }
   // }
+  // let news = GetSpecificNews(newsId);
+  // console.log("log before return");
+  // console.log(GetSpecificNews(newsId))
   return (
     <div>
       <div>
@@ -114,12 +138,15 @@ const ViewNews = ({ match, location }) => {
         </button>
         </div>
         <div>
-        <strong>News ID: </strong>
-        {newsId}
+        {/* <strong>News ID: </strong>
+        {newsId} */}
         <strong>News Content: </strong>
-        {news}
+        {newsContent}
+        <strong>News URL: </strong>
+        {newsURL}
         <div>
-        {comment.map((value, index)=> <p>commentId: {value.commentId}, commentContent: {value.commentContent}</p> )}
+        {console.log("comment", comment)}
+        {comment.map((value, index)=> <Comment commentId={value._id} content={value.content} username={value.username} newsId={value.newsId} creationTime={value.creationTime} key={index} onClickEdit={onClickEdit}/>)}
         { <Input onClick= {onClickComment} buttonName="post comments" />}
         </div>
         </div>
