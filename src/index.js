@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import App from './App';
 import ViewNews from './ViewNews';
-import SignUp from './SignUp';
+// import SignUp from './SignUp';
 import Login from './Login';
 import CreateNews from './CreateNews';
 
@@ -15,7 +15,7 @@ ReactDOM.render(
           <Switch>
               {/* exact makes sure to render ONLY the given component, since this behaves like a switch case logic */}
               <Route exact path={"/news/:newsId"} component={ViewNews}/>
-              <Route exact path={"/signup/"} component={SignUp}/>
+              {/* <Route exact path={"/signup/"} component={SignUp}/> */}
               <Route exact path={"/login/"} component={Login}/>
               <Route exact path={"/"} component={App}/>
               <Route exact path={"/createnews"} component={CreateNews}/>

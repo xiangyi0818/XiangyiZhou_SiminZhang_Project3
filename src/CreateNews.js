@@ -1,6 +1,7 @@
 import Axios from 'axios';
 import React from 'react';
 import {Link} from 'react-router-dom';
+import NavBar from './NavBar';
 
 
 export default class CreateNews extends React.Component{
@@ -10,59 +11,60 @@ export default class CreateNews extends React.Component{
         title:"",
         url:"",
         content:"",
+        username:"",
         newsList:[],
+        redirect:false,
       }
     }
     onClickCreate=()=> {
-
-    
+        // this.setState({redirect: true})
+        
         if (this.state.url !== "" && this.state.content !== ""){
             alert("Please fill only one!")
         }
         else{
         const newNews = {
+            username:this.state.username,
             title: this.state.title,
             url: this.state.url,
             content: this.state.content,
         };
         Axios.post('http://localhost:8000/api/news', newNews, {withCredentials: true})
-            .then(this.getNewsList())
+            .then()
             .catch(error => console.error(error))
+        window.location.href = '/'
         }
       }
 
-
-    
-    getNewsList=()=>{
-        Axios.get('http://localhost:8000/api/news')
+    getUserName =()=>{
+        Axios.post(`http://localhost:8000/api/user/username`,{} ,{withCredentials: true})
             .then((response) => {
-                this.setState({
-                newsList: response.data,
-            })})
+                // console.log(response.data)
+                this.setState({                   
+                  username: response.data,
+                })})
             .catch(error => console.error(error))
     }
 
     componentDidMount() {
-        // Axios.get('http://localhost:8000/api/news')
-        //     .then((response) => {
-        //         this.setState({
-        //           news: response.data,
-        //     })})
-        //     .catch(error => console.error(error));
-        this.getNewsList();
+        this.getUserName();
     }
 
+   
 
     render(){
+        // if (this.onClickCreate() === true){
+        //     this.state.redirect = true;
+        // }
+    
+        // if (this.state.redirect === true){
+        //     window.location.href = '/'
+        //     this.state.redirect = false;
+        // }
         return(
             <div>
                 <div>
-                <button><Link to={'/'}><strong>Home</strong></Link>
-               </button>
-                <button><Link to={'/signup/'}><strong>Sign Up</strong></Link>
-                </button>
-                <button><Link to={'/login/'}><strong>Log in</strong></Link>
-                </button>
+                <NavBar/>
                 </div>
                 Title:<input type="text" value={this.state.title} onChange={e => this.setState({title: e.target.value})}></input>
                 Url:<input type="text" value={this.state.url} onChange={e => this.setState({url: e.target.value})}></input>

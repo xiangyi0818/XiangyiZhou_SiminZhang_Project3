@@ -13,13 +13,13 @@ const commentAccessor = require('../model/comment.model');
 // });
 
 router.get('/', (req, res) => {
-    console.log("id",req.query.newsId)
+    // console.log("id",req.query.newsId)
     if (req.query.newsId !== undefined) {
        return commentAccessor.findCommentByNewsId(req.query.newsId)
             .then((response) => res.status(200).send(response),
                 (error) =>  res.status(404).send(`Error finding News:${error}`));
     } else {
-        console.log("get comment")
+        // console.log("get comment")
         return commentAccessor.getAllComments()
             .then((response) => res.status(200).send(response),
                 (error) =>  res.status(404).send(`Error finding Comments:${error}`));
@@ -49,5 +49,20 @@ router.put('/:commentId', authParser,(req, res) => {
             (error) => res.status(404).send(`Error finding Comment:${error}`))
 });
 
+router.delete('/:id',authParser, (req, res)=>{
+    // console.log("get delete request")
+    return commentAccessor.deletelCommentById(req.params.id)
+        .then((response) => res.status(200).send(response),
+        (error) => res.status(404).send(`Error finding News:${error}`))
+})
+
+router.delete('/',authParser, (req, res)=>{
+    // console.log("get delete request")
+    if (req.query.newsId !== undefined) {
+        return commentAccessor.deletelCommentById(req.query.newsId)
+             .then((response) => res.status(200).send(response),
+                 (error) =>  res.status(404).send(`Error finding News:${error}`));
+     }
+})
 
 module.exports = router;

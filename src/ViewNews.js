@@ -1,54 +1,11 @@
 import React, {useEffect} from 'react';
-import { useLocation, Link } from "react-router-dom";
+import { useLocation, Link, Redirect } from "react-router-dom";
 import Axios from 'axios';
 import { useState } from 'react';
 import Input from './Input';
 import Comment from './Comment';
+import NavBar from './NavBar';
 
-
-// const ViewNews  = () => {
-//     const { state } = useLocation();
-//     console.log("visit"+state.news.id)
-  
-//     return (
-//       <div>
-//           <strong>Id:</strong> {state.news.id}{" "}
-//           <p>aaa</p>
-//       </div>
-//     );
-//   };
-  
-//   export default ViewNews;
-// const GetSpecificNews=(_id)=>{
-
-//   const [news, setNews] = useState(0);
-
-//   Axios.get(`http://localhost:8000/api/news/${_id}`)
-//       .then((response) => {
-//          console.log("bbbb")
-//           setNews(news)})
-//       .catch(error => console.error(error))
-// }
-
-// const GetCommentList=(_id)=>{
-
-//   const [comment, setComment] = useState(0);
-
-//   Axios.get(`http://localhost:8000/api/news/comment/?_id=${_id}`)
-//       .then((response) => {
-//          console.log("bbbb")
-//           setComment(comment)})
-//       .catch(error => console.error(error))
-// }
-
-// const onClickComment=(content)=> {
-//   const newComment = {
-//       commentContent: content,
-//   };
-//   Axios.post('http://localhost:8000/api/comment/', newComment)
-//       // .then(GetCommentList())
-//       .catch(error => console.error(error))
-// }
 
 const ViewNews = ({ match, location }) => {
   const { params: { newsId } } = match;
@@ -56,15 +13,23 @@ const ViewNews = ({ match, location }) => {
   const [newsCreationTime, setNewsCreationTime] = useState("");
   const [newsURL, setNewsURL] = useState("");
   const [comment, setComment] = useState([]);
-  
+  // const [input, setInput] = useState(false);
+  const [username, setUsername] = useState("");
+  const [editNewsContent, setEditNewsContent] = useState("");
+  const [showInput,setShowInput] = useState(false);
+  const [currentUsername,setCurrentUsername] = useState("");
+  const [redirect, setRedirect] = useState(false);
 
   const GetSpecificNews= (newsId)=>{  
     const new_from_response = Axios.get(`http://localhost:8000/api/news/${newsId}`)
         .then((response) => 
             {
+              console.log(response.data)
               setNewsContent(response.data.content);
               setNewsCreationTime(response.data.creationTime)
-              setNewsURL(response.data.url);       
+              setNewsURL(response.data.url); 
+              setUsername(response.data.username);   
+              // setNewsId(response.data._id);                       
             }
           )
         .catch(error => console.error(error))
@@ -76,7 +41,7 @@ const ViewNews = ({ match, location }) => {
   const GetCommentList=(newsId)=>{  
     Axios.get(`http://localhost:8000/api/comment/?newsId=${newsId}`)
         .then((response) => {
-          console.log("map",response)
+          // console.log("map",response)
             setComment(response.data)
           })
         .catch(error => console.error(error))
@@ -86,11 +51,29 @@ const ViewNews = ({ match, location }) => {
     const newComment = {
         content: content,
     };
-
+    // setInput(true);
     Axios.put(`http://localhost:8000/api/comment/${commentId}`, newComment, {withCredentials: true})
     .then(response => {
-        console.log(response);
+        // console.log(response);
       })
+    .then(GetCommentList(newsId))
+    .catch(error => console.error(error))
+
+  }
+
+  const onClickDeleteNews=(newsId)=>{
+    Axios.delete(`http://localhost:8000/api/news/${newsId}`, {withCredentials: true})
+    .then()
+    .catch(error => console.error(error))
+
+    Axios.delete(`http://localhost:8000/api/comment/?newsId=${newsId}`, {withCredentials: true})
+    .then()
+    .catch(error => console.error(error))
+    setRedirect(true)
+  }
+
+  const onClickDeleteComment=(commentId)=>{
+    Axios.delete(`http://localhost:8000/api/comment/${commentId}`, {withCredentials: true})
     .then(GetCommentList(newsId))
     .catch(error => console.error(error))
   }
@@ -104,11 +87,68 @@ const ViewNews = ({ match, location }) => {
         .then(GetCommentList(newsId))
         .catch(error => console.error(error))
   }
+
+  const getUserName =()=>{
+    Axios.post(`http://localhost:8000/api/user/username`,{} ,{withCredentials: true})
+        .then((response) => {
+            // console.log(response.data)
+            setCurrentUsername(                  
+              response.data,
+            )})
+        .catch(error => console.error(error))
+
+}
+
+
+  const onClickEditNews=(newsId)=> {
+    if(editNewsContent === ""){
+      setShowInput(true);
+    }
+    else{
+      const newNews = {
+        content: editNewsContent,
+      };
+      Axios.put(`http://localhost:8000/api/news/${newsId}`, newNews, {withCredentials: true})
+      .then(()=>{GetSpecificNews(newsId);setEditNewsContent("");setShowInput(false);})
+      // .then(GetCommentList(newsId))
+      .catch(error => console.error(error))
+    }
+  }
+
+  const getOptionalInput =()=>{
+    if (showInput){
+        return <input type="text" value={editNewsContent} onChange={e => setEditNewsContent(e.target.value)}></input>
+    }
+}
+  const trigerReditect=()=>{
+    if (redirect){
+      return  <Redirect to="/"/> 
+    }
+  }
+
+  const conditionalButton=()=>{
+    // console.log(username1,username2)
+    const renderButton = []
+    if (username === currentUsername){
+      renderButton.push(
+        <div>        
+        <button onClick={()=> onClickEditNews(newsId)}>edit</button>
+        <button onClick={() => onClickDeleteNews(newsId)}>delete</button>
+        </div>
+      )
+      return renderButton
+
+    }
+  }
+
   useEffect(()=>{
-    GetSpecificNews(newsId)
+    GetSpecificNews(newsId);
     GetCommentList(newsId);
+    getUserName();
     }, []
   );
+
+  
 
   // const renderComment= [];
  
@@ -124,32 +164,40 @@ const ViewNews = ({ match, location }) => {
   //     )
   //   }
   // }
-  // let news = GetSpecificNews(newsId);
-  // console.log("log before return");
-  // console.log(GetSpecificNews(newsId))
+  
   return (
     <div>
       <div>
-      <button><Link to={'/'}><strong>Home</strong></Link>
-        </button>
-      <button><Link to={'/signup/'}><strong>Sign Up</strong></Link>
-        </button>
-        <button><Link to={'/login/'}><strong>Log in</strong></Link>
-        </button>
+      
+       <NavBar/>
         </div>
         <div>
         {/* <strong>News ID: </strong>
         {newsId} */}
-        <strong>News Content: </strong>
-        {newsContent}
+        <strong>News Creator: </strong>
+        {username}
         <strong>News URL: </strong>
         {newsURL}
+        <strong>newsCreationTime:</strong>
+        {newsCreationTime}
         <div>
-        {console.log("comment", comment)}
-        {comment.map((value, index)=> <Comment commentId={value._id} content={value.content} username={value.username} newsId={value.newsId} creationTime={value.creationTime} key={index} onClickEdit={onClickEdit}/>)}
+        <div>
+        <strong>News Content: </strong>
+        {newsContent}
+        </div>
+        <div>
+        {getOptionalInput()}
+        {conditionalButton()}
+        </div>
+        
+        {/* {console.log("comment", comment)} */}
+        {comment.map((value, index)=> <Comment commentId={value._id} content={value.content} username={value.username} newsId={value.newsId} 
+        creationTime={value.creationTime} key={index} onClickEdit={onClickEdit} 
+        onClickDeleteComment={onClickDeleteComment}/>)}
         { <Input onClick= {onClickComment} buttonName="post comments" />}
         </div>
         </div>
+        {trigerReditect()}
     </div>
   );
 };

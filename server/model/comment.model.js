@@ -33,6 +33,14 @@ function putCommentByCommentId(id, update) {
     return commentModel.findByIdAndUpdate(id, update).exec();
 }
 
+function deletelCommentById(id){
+    return commentModel.findByIdAndDelete(id).exec()
+}
+
+function deletelCommentByNewsId(newsId){
+    return commentModel.find({newsId: newsId}).remove().exec()
+}
+
 // Make sure to export a function after you create it!
 module.exports = {
     insertComment,
@@ -40,4 +48,6 @@ module.exports = {
     findCommentByCommentId,
     findCommentByNewsId,
     putCommentByCommentId,
+    deletelCommentById,
+    deletelCommentByNewsId,
 };

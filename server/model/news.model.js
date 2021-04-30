@@ -12,7 +12,7 @@ function insertNews(news) {
 }
 
 function getAllNews() {
-    return newsModel.find().exec();
+    return newsModel.find().sort({creationTime:-1}).exec();
 }
 // Note the difference between the find above and below.
 // Above, this is finding pretty ALL documents
@@ -26,9 +26,24 @@ function findNewsById(id) {
     return newsModel.findById(id).exec();
 }
 
+function deletelNewsById(id){
+    return newsModel.findByIdAndDelete(id).exec()
+}
+
+function deleteAllNews(){
+    return newsModel.remove().exec()
+}
+
+function putNewsByNewsId(id, update) {
+    return newsModel.findByIdAndUpdate(id, update).exec();
+}
+
 // Make sure to export a function after you create it!
 module.exports = {
     insertNews,
     getAllNews,
     findNewsById,
+    deletelNewsById,
+    deleteAllNews,
+    putNewsByNewsId,
 };
