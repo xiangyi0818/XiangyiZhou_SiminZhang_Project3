@@ -66,10 +66,17 @@ export default class CreateNews extends React.Component{
                 <div>
                 <NavBar/>
                 </div>
-                Title:<input type="text" value={this.state.title} onChange={e => this.setState({title: e.target.value})}></input>
+                <div>Title:<input type="text" value={this.state.title} onChange={e => this.setState({title: e.target.value})}></input>
+                </div>
+                <div>
                 Url:<input type="text" value={this.state.url} onChange={e => this.setState({url: e.target.value})}></input>
+                </div>
+                <div>
                 Body:<input type="text" value={this.state.content} onChange={e => this.setState({content: e.target.value})}></input>
+                </div>
+                <div>
                 <button onClick={() => this.onClickCreate()}>Submit</button>
+                </div>
             </div>
         )
     }

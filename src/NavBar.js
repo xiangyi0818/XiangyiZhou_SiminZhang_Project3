@@ -27,6 +27,7 @@ export default class NavBar extends React.Component{
         .catch(error => console.error(error))  
         // this.setState({redirect:true}) 
         this.setState({username:""})
+        window.location.href = '/'
     }
 
     // trigerReditect=()=>{
@@ -45,7 +46,8 @@ export default class NavBar extends React.Component{
             return (
                 <div>
                 <button><Link to={'/'}><strong>Home</strong></Link></button>
-                <button><Link to={'/createnews/'}><strong>{this.state.username}</strong></Link></button>
+                <button><strong>{this.state.username}</strong></button>
+                <button><Link to={'/createnews/'}><strong>Post News</strong></Link></button>
                 <button onClick={() => this.onClickLogout()}>log out</button>
                 </div>)
         }
