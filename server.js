@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 // const mongoDBEndpoint = 'mongodb://127.0.0.1/collection_name';
 // const mongoDBEndpoint = "mongodb+srv://Xiangyi:banana1234@project3.0zkrp.mongodb.net/collection_name?retryWrites=true&w=majority"
 // const mongoDBEndpoint = process.env.MONGODB_URI||'mongodb://127.0.0.1/collection_name';
-// const mongoDBEndpoint = process.env.MONGODB_URI||'mongodb://127.0.0.1/collection_name';
+const mongoDBEndpoint = process.env.MONGODB_URI||'mongodb://127.0.0.1/collection_name';
 
 mongoose.connect(mongoDBEndpoint, { useNewUrlParser: true });
 
