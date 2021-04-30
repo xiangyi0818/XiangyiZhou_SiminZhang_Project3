@@ -47,6 +47,7 @@ export default class NavBar extends React.Component{
                 <div>
                 <button><Link to={'/'}><strong>Home</strong></Link></button>
                 <button><strong>{this.state.username}</strong></button>
+
                 <button><Link to={'/createnews/'}><strong>Post News</strong></Link></button>
                 <button onClick={() => this.onClickLogout()}>log out</button>
                 </div>)
@@ -54,6 +55,7 @@ export default class NavBar extends React.Component{
         return(
             <div>
                 <button><Link to={'/'}><strong>Home</strong></Link></button>
+                <button><Link to={'/signup/'}><strong>Sign up</strong></Link></button>
                 <button><Link to={'/login/'}><strong>Log in</strong></Link></button>
             </div>
 

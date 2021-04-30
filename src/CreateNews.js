@@ -14,13 +14,23 @@ export default class CreateNews extends React.Component{
         username:"",
         newsList:[],
         redirect:false,
+        warning1:false,
+        warning2:false,
       }
     }
     onClickCreate=()=> {
         // this.setState({redirect: true})
-        
-        if (this.state.url !== "" && this.state.content !== ""){
-            alert("Please fill only one!")
+        if (this.state.title === ""){
+            // console.log("warning1",this.state.warning)
+            this.setState({warning2:true})
+            // this.showWarning()
+            // return 
+        }
+        else if (this.state.url !== "" && this.state.content !== ""){
+            console.log("warning1",this.state.warning)
+            this.setState({warning1:true})
+            // this.showWarning()
+            // return 
         }
         else{
         const newNews = {
@@ -32,7 +42,7 @@ export default class CreateNews extends React.Component{
         Axios.post('http://localhost:8000/api/news', newNews, {withCredentials: true})
             .then()
             .catch(error => console.error(error))
-        window.location.href = '/'
+            window.location.href = '/'
         }
       }
 
@@ -48,6 +58,16 @@ export default class CreateNews extends React.Component{
 
     componentDidMount() {
         this.getUserName();
+    }
+
+    showWarning(){
+        console.log("showwarning", this.state.warning)
+        if (this.state.warning1 === true){
+            return <div><strong>Please fill either url or content.Please do not fill them both.</strong></div>
+        }
+        else if  (this.state.warning2 === true){
+            return <div><strong>Please fill the title!</strong></div>
+        }
     }
 
    
@@ -77,6 +97,7 @@ export default class CreateNews extends React.Component{
                 <div>
                 <button onClick={() => this.onClickCreate()}>Submit</button>
                 </div>
+                {this.showWarning()}
             </div>
         )
     }

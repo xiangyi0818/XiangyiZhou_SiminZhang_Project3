@@ -16,17 +16,18 @@ const { useParams } = require('react-router');
 //     // return all pokemon
 //     res.send(myNews)
 // });
-//log in
+//get username
 router.post('/username', authParser, (req,res) => {
     // console.log("log out")
     console.log(req.username)
     res.send(req.username)
 })
 
+//login
 router.post('/authenticate', function (req, res) {
     const {username, password} = req.body;
     // console.log(req.body.username)
-    console.log("login user")
+    // console.log("login user")
     userAccessor.findUserByUsername(username)
         .then((user) => {
             user.comparePassword(password, (error, match) => {
@@ -48,10 +49,13 @@ router.post('/authenticate', function (req, res) {
                     console.log("log in", token);
                     return res.status(200).send({username});
                 }
+                // console.log(response)
                 return res.status(400).send("The password does not match");
             });
         })
         .catch((error) => console.error(`Something went wrong: ${error}`));
+        console.log("status",res.status)
+
     });
 
 router.get('/', (req, res) => {
@@ -72,7 +76,7 @@ router.post('/', (req, res) => {
     // NOTE: because we're using Mongoose, it will
     // filter out any data that we DON'T want
     // So we can safely pass it the entire body
-    console.log("post user")
+    // console.log("post user")
     return userAccessor.findUserByUsername(req.body.username)
         .then((entry) => {
             if (entry) {
@@ -98,8 +102,8 @@ router.post('/', (req, res) => {
             // console.log("sign up3")
             res.cookie('token', token, {httpOnly: true})
             // console.log("sign up 4",token)
-            console.log("sign up", token)
-            console.log("sign up", username)
+            // console.log("sign up", token)
+            // console.log("sign up", username)
             return res.status(200).send({username});
 
         })

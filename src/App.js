@@ -89,25 +89,30 @@ onClickEdit=(newsId, content)=> {
 }
   render(){
     const renderNews = [];
+    let newsLink;
 
     for(let i = 0; i < this.state.newsList.length; i++ ){
         const news = this.state.newsList[i];
         if(news.content !== undefined){
+          // console.log(news.url)
+          if (news.url !== ""){
+            // newsLink = "http://" + news.url;
+            newsLink = news.url;
+          }
+          else{
+            newsLink = `/news/${news._id}`;
+          }
+          // console.log(newsLink)
           renderNews.push(
               <div className="news">
-                <form>
-                  <div>
-                  {news.title}
-                  </div>
-
+                  <a href={newsLink}>{news.title}</a>
                   <div>
                     {/* <button onClick={() => this.onClickDelete(news._id)}>delete</button> */}
                     {/* <input type="text" value={this.state.content} onChange={e => this.setState({content: e.target.value})}></input> */}
                     {/* <button onClick={() => this.onClickEdit(news._id)}>edit</button> */}
                   </div>
-                </form>
                   <button>
-                    <Link to={{pathname:`/news/${news._id}`}}><p>View News</p></Link></button>
+                    <Link to={{pathname:`/news/${news._id}`}}><p>Comments</p></Link></button>
                     {/* <Link to={"/news"}><p>Comments</p></Link></button> */}
               </div>
           )
@@ -134,7 +139,7 @@ onClickEdit=(newsId, content)=> {
       <div>
         <NavBar/>
         <h1>Hacky News</h1>
-        <h2>{renderNews.splice(0,29)}</h2>
+        <h2>{renderNews}</h2>
         {/* <h2>{renderComment}</h2> */}
         {/* { <Input onClick= {this.onClickNews} buttonName="post news" />} */}
       </div>

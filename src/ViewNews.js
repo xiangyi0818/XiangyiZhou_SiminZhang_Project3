@@ -19,6 +19,7 @@ const ViewNews = ({ match, location }) => {
   const [showInput,setShowInput] = useState(false);
   const [currentUsername,setCurrentUsername] = useState("");
   const [redirect, setRedirect] = useState(false);
+  const [notlogin,setNotLogin] = useState(false);
 
   const GetSpecificNews= (newsId)=>{  
     const new_from_response = Axios.get(`http://localhost:8000/api/news/${newsId}`)
@@ -85,7 +86,16 @@ const ViewNews = ({ match, location }) => {
     };
     Axios.post(`http://localhost:8000/api/comment/`, newComment, {withCredentials: true})
         .then(GetCommentList(newsId))
-        .catch(error => console.error(error))
+        .catch((error) => {setNotLogin(true)})
+  }
+
+  const mustLogin=()=>{
+    if (notlogin){
+      return <div>
+        <strong>Please sign up or login to post comments!</strong>
+      </div>
+      
+    }
   }
 
   const getUserName =()=>{
@@ -191,10 +201,11 @@ const ViewNews = ({ match, location }) => {
         </div>
         
         {/* {console.log("comment", comment)} */}
+        { <Input onClick= {onClickComment} buttonName="post comments" />}
+        {mustLogin()}
         {comment.map((value, index)=> <Comment commentId={value._id} content={value.content} username={value.username} newsId={value.newsId} 
         creationTime={value.creationTime} key={index} onClickEdit={onClickEdit} 
         onClickDeleteComment={onClickDeleteComment}/>)}
-        { <Input onClick= {onClickComment} buttonName="post comments" />}
         </div>
         </div>
         {trigerReditect()}
