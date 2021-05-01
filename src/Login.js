@@ -39,7 +39,7 @@ export default class Login extends React.Component{
         };
         // console.log(newlogin)
         
-        Axios.post('http://localhost:8000/api/user/authenticate', newlogin,  {withCredentials: true})
+        Axios.post('/api/user/authenticate', newlogin,  {withCredentials: true})
         // (console.log("login response",response))
         .then(
             (response) => { 
@@ -94,7 +94,7 @@ export default class Login extends React.Component{
     }
 
     getUser=()=>{
-        Axios.get(`http://localhost:8000/api/user`)
+        Axios.get(`/api/user`)
             .then((response) => {
                 console.log(response)
                 this.setState({

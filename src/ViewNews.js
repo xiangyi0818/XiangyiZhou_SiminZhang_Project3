@@ -22,7 +22,7 @@ const ViewNews = ({ match, location }) => {
   const [notlogin,setNotLogin] = useState(false);
 
   const GetSpecificNews= (newsId)=>{  
-    const new_from_response = Axios.get(`http://localhost:8000/api/news/${newsId}`)
+    const new_from_response = Axios.get(`/api/news/${newsId}`)
         .then((response) => 
             {
               console.log(response.data)
@@ -40,7 +40,7 @@ const ViewNews = ({ match, location }) => {
   }
 
   const GetCommentList=(newsId)=>{  
-    Axios.get(`http://localhost:8000/api/comment/?newsId=${newsId}`)
+    Axios.get(`/api/comment/?newsId=${newsId}`)
         .then((response) => {
           // console.log("map",response)
             setComment(response.data)
@@ -53,7 +53,7 @@ const ViewNews = ({ match, location }) => {
         content: content,
     };
     // setInput(true);
-    Axios.put(`http://localhost:8000/api/comment/${commentId}`, newComment, {withCredentials: true})
+    Axios.put(`/api/comment/${commentId}`, newComment, {withCredentials: true})
     .then(response => {
         // console.log(response);
       })
@@ -63,18 +63,18 @@ const ViewNews = ({ match, location }) => {
   }
 
   const onClickDeleteNews=(newsId)=>{
-    Axios.delete(`http://localhost:8000/api/news/${newsId}`, {withCredentials: true})
+    Axios.delete(`/api/news/${newsId}`, {withCredentials: true})
     .then()
     .catch(error => console.error(error))
 
-    Axios.delete(`http://localhost:8000/api/comment/?newsId=${newsId}`, {withCredentials: true})
+    Axios.delete(`/api/comment/?newsId=${newsId}`, {withCredentials: true})
     .then()
     .catch(error => console.error(error))
     setRedirect(true)
   }
 
   const onClickDeleteComment=(commentId)=>{
-    Axios.delete(`http://localhost:8000/api/comment/${commentId}`, {withCredentials: true})
+    Axios.delete(`/api/comment/${commentId}`, {withCredentials: true})
     .then(GetCommentList(newsId))
     .catch(error => console.error(error))
   }
@@ -84,7 +84,7 @@ const ViewNews = ({ match, location }) => {
         content: content,
         newsId: newsId,  
     };
-    Axios.post(`http://localhost:8000/api/comment/`, newComment, {withCredentials: true})
+    Axios.post(`/api/comment/`, newComment, {withCredentials: true})
         .then(GetCommentList(newsId))
         .catch((error) => {setNotLogin(true)})
   }
@@ -94,12 +94,12 @@ const ViewNews = ({ match, location }) => {
       return <div>
         <strong>Please sign up or login to post comments!</strong>
       </div>
-      
+
     }
   }
 
   const getUserName =()=>{
-    Axios.post(`http://localhost:8000/api/user/username`,{} ,{withCredentials: true})
+    Axios.post(`/api/user/username`,{} ,{withCredentials: true})
         .then((response) => {
             // console.log(response.data)
             setCurrentUsername(                  
@@ -118,7 +118,7 @@ const ViewNews = ({ match, location }) => {
       const newNews = {
         content: editNewsContent,
       };
-      Axios.put(`http://localhost:8000/api/news/${newsId}`, newNews, {withCredentials: true})
+      Axios.put(`/api/news/${newsId}`, newNews, {withCredentials: true})
       .then(()=>{GetSpecificNews(newsId);setEditNewsContent("");setShowInput(false);})
       // .then(GetCommentList(newsId))
       .catch(error => console.error(error))

@@ -13,7 +13,7 @@ export default class NavBar extends React.Component{
     }
 
     getUserName =()=>{
-        Axios.post(`http://localhost:8000/api/user/username`,{} ,{withCredentials: true})
+        Axios.post(`/api/user/username`,{} ,{withCredentials: true})
             .then((response) => {
                 // console.log(response.data)
                 this.setState({                   
@@ -23,7 +23,7 @@ export default class NavBar extends React.Component{
     }
 
     onClickLogout=()=>{
-        Axios.post(`http://localhost:8000/api/user/logout`,{} ,{withCredentials: true})
+        Axios.post(`/api/user/logout`,{} ,{withCredentials: true})
         .catch(error => console.error(error))  
         // this.setState({redirect:true}) 
         this.setState({username:""})

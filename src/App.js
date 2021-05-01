@@ -17,7 +17,7 @@ class App extends React.Component{
   }
 
   getComment=()=>{
-    Axios.get(`http://localhost:8000/api/comment`)
+    Axios.get(`/api/comment`)
         .then((response) => {
             this.setState({
               comment: response.data,
@@ -26,7 +26,7 @@ class App extends React.Component{
   }
 
   getNewsList=()=>{
-    Axios.get('http://localhost:8000/api/news')
+    Axios.get('/api/news')
         .then((response) => {
             this.setState({
               newsList: response.data,
@@ -80,7 +80,7 @@ onClickEdit=(newsId, content)=> {
       content: content,
   };
   // setInput(true);
-  Axios.put(`http://localhost:8000/api/news/${newsId}`, newNews, {withCredentials: true})
+  Axios.put(`/api/news/${newsId}`, newNews, {withCredentials: true})
   .then(response => {
       // console.log(response);
     })

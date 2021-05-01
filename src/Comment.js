@@ -9,6 +9,7 @@ export default class Comment extends React.Component {
         content:[],
         input:false,
         username:"",
+        
         // show:false,
       }
     }
@@ -19,7 +20,7 @@ export default class Comment extends React.Component {
         }
     }
     getUserName =()=>{
-        Axios.post(`http://localhost:8000/api/user/username`,{} ,{withCredentials: true})
+        Axios.post(`/api/user/username`,{} ,{withCredentials: true})
             .then((response) => {
                 // console.log(response.data)
                 this.setState({                   

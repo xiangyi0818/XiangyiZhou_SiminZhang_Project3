@@ -39,7 +39,7 @@ export default class CreateNews extends React.Component{
             url: this.state.url,
             content: this.state.content,
         };
-        Axios.post('http://localhost:8000/api/news', newNews, {withCredentials: true})
+        Axios.post('/api/news', newNews, {withCredentials: true})
             .then()
             .catch(error => console.error(error))
             window.location.href = '/'
@@ -47,7 +47,7 @@ export default class CreateNews extends React.Component{
       }
 
     getUserName =()=>{
-        Axios.post(`http://localhost:8000/api/user/username`,{} ,{withCredentials: true})
+        Axios.post(`/api/user/username`,{} ,{withCredentials: true})
             .then((response) => {
                 // console.log(response.data)
                 this.setState({                   

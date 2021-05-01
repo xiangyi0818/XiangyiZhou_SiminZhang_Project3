@@ -48,7 +48,7 @@ export default class Login extends React.Component{
                 password: password,
             };
           
-            Axios.post('http://localhost:8000/api/user/', newSignUp,  {withCredentials: true})
+            Axios.post('/api/user/', newSignUp,  {withCredentials: true})
             .then((response)=>{
                 // console.log("signup response", response)
                 // if (response.status === 403){
@@ -82,7 +82,7 @@ export default class Login extends React.Component{
     }
 
     getUser=()=>{
-        Axios.get(`http://localhost:8000/api/user`)
+        Axios.get(`/api/user`)
             .then((response) => {
                 console.log(response)
                 this.setState({
