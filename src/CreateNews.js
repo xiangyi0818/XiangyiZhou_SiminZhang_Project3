@@ -119,6 +119,8 @@ export default class CreateNews extends React.Component{
                     <NavBar/>
                 </div>
 
+
+                <div className="main-content">
                 <div className="title">
                     Title:<input type="text" value={this.state.title} onChange={e => this.setState({title: e.target.value})}></input>
                 </div>
@@ -135,6 +137,7 @@ export default class CreateNews extends React.Component{
                     <button onClick={() => this.onClickCreate()}>Submit</button>
                 </div>
                 {this.showWarning()}
+                </div>
             </div>
         )
     }
