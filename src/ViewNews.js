@@ -198,39 +198,42 @@ const ViewNews = ({ match, location }) => {
   // }
   
   return (
-    <div>
-      <div>
-      
-       <NavBar/>
+    <div className="container">
+        <div className="main-nav">
+          <NavBar/>
         </div>
+
         <div>
-        {/* <strong>News ID: </strong>
-        {newsId} */}
-         {newsTitle}
-         <div>
-        <strong>News Creator: </strong>
-        {username},
-        <strong>News URL: </strong>
-        {newsURL},
-        <strong>newsCreationTime:</strong>
-        {newsCreationTime}
-        </div>
-        <div>
-        <div>
-        {newsContent}
-        </div>
-        <div>
-        {getOptionalInput()}
-        {conditionalButton()}
-        </div>
-        
-        {/* {console.log("comment", comment)} */}
-        { <Input onClick= {onClickComment} buttonName="post comments" />}
-        {mustLogin()}
-        {comment.map((value, index)=> <Comment commentId={value._id} content={value.content} username={value.username} newsId={value.newsId} 
-        creationTime={value.creationTime} key={index} GetCommentList={GetCommentList} updateRequest={()=>setNumRequest(numRequest+1)}
-        onClickDeleteComment={onClickDeleteComment}/>)}
-        </div>
+          {/* <strong>News ID: </strong>
+          {newsId} */}
+          {newsTitle}
+
+          <div>
+            <strong>News Creator: </strong>
+            {username},
+            <strong>News URL: </strong>
+            {newsURL},
+            <strong>newsCreationTime:</strong>
+            {newsCreationTime}
+          </div>
+
+          <div>
+            <div>
+              {newsContent}
+            </div>
+
+            <div>
+              {getOptionalInput()}
+              {conditionalButton()}
+            </div>
+            
+            {/* {console.log("comment", comment)} */}
+            { <Input onClick= {onClickComment} buttonName="post comments" />}
+            {mustLogin()}
+            {comment.map((value, index)=> <Comment commentId={value._id} content={value.content} username={value.username} newsId={value.newsId} 
+            creationTime={value.creationTime} key={index} GetCommentList={GetCommentList} updateRequest={()=>setNumRequest(numRequest+1)}
+            onClickDeleteComment={onClickDeleteComment}/>)}
+          </div>
         </div>
         {trigerReditect()}
     </div>

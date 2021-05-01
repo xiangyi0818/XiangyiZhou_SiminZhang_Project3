@@ -2,6 +2,7 @@ import Axios from 'axios';
 import React from 'react';
 import {Link, matchPath} from 'react-router-dom';
 import NavBar from './NavBar';
+import "./CreateNews.css";
 
 
 export default class CreateNews extends React.Component{
@@ -113,20 +114,25 @@ export default class CreateNews extends React.Component{
         //     this.state.redirect = false;
         // }
         return(
-            <div>
-                <div>
-                <NavBar/>
+            <div className="container">
+                <div className="main-nav">
+                    <NavBar/>
                 </div>
-                <div>Title:<input type="text" value={this.state.title} onChange={e => this.setState({title: e.target.value})}></input>
+
+                <div className="title">
+                    Title:<input type="text" value={this.state.title} onChange={e => this.setState({title: e.target.value})}></input>
                 </div>
-                <div>
-                Url:<input type="text" value={this.state.url} onChange={e => this.setState({url: e.target.value})}></input>
+
+                <div className="url">
+                    Url:<input type="text" value={this.state.url} onChange={e => this.setState({url: e.target.value})}></input>
                 </div>
-                <div>
-                Body:<input type="text" value={this.state.content} onChange={e => this.setState({content: e.target.value})}></input>
+
+                <div className="body">
+                    Body:<input type="text" value={this.state.content} onChange={e => this.setState({content: e.target.value})}></input>
                 </div>
+
                 <div>
-                <button onClick={() => this.onClickCreate()}>Submit</button>
+                    <button onClick={() => this.onClickCreate()}>Submit</button>
                 </div>
                 {this.showWarning()}
             </div>
