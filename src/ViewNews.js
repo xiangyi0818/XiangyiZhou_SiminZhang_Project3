@@ -203,12 +203,13 @@ const ViewNews = ({ match, location }) => {
           <NavBar/>
         </div>
 
-        <div>
+        <div className="main-content">
           {/* <strong>News ID: </strong>
           {newsId} */}
           {newsTitle}
 
           <div>
+  
             <strong>News Creator: </strong>
             {username},
             <strong>News URL: </strong>

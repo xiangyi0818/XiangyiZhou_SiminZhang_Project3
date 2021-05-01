@@ -1,5 +1,6 @@
 import React from 'react';
 import Axios from 'axios';
+import "./Comment.css";
 
 
 export default class Comment extends React.Component {
@@ -73,11 +74,11 @@ export default class Comment extends React.Component {
             <div className="container">
 
                 <div>
-                    <span className="">   
+                    <span id="comment-creator">   
                     creator: {this.props.username},
                     </span>
 
-                    <span>
+                    <span id="comment-creationTime">
                     creationTime: {this.props.creationTime}
                     </span>
                 </div>
