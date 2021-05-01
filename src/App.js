@@ -4,6 +4,7 @@ import Input from './Input';
 import {Link} from 'react-router-dom';
 import ViewNews from './ViewNews';
 import NavBar from './NavBar';
+import './App.css';
 
 
 class App extends React.Component{
@@ -136,12 +137,20 @@ onClickEdit=(newsId, content)=> {
     //   }
     // }
     return(
-      <div>
-        <NavBar/>
-        <h4>Hacky News</h4>
-        <h2>{renderNews}</h2>
-        {/* <h2>{renderComment}</h2> */}
-        {/* { <Input onClick= {this.onClickNews} buttonName="post news" />} */}
+      <div className="container">
+        <div className="main-nav">
+          <NavBar/>
+        </div>
+
+        <div className="main-header">
+          <h2>Hacky News</h2>
+        </div>
+
+        <div className="main-content">
+          <h2>{renderNews}</h2>
+          {/* <h2>{renderComment}</h2> */}
+          {/* { <Input onClick= {this.onClickNews} buttonName="post news" />} */}
+        </div>
       </div>
     )
   }
