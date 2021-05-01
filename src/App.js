@@ -144,7 +144,8 @@ onClickEdit=(newsId, content)=> {
 
 
         <div className="main-content">
-          <h2>{renderNews}</h2>
+          
+          <h4>{renderNews}</h4>
           {/* <h2>{renderComment}</h2> */}
           {/* { <Input onClick= {this.onClickNews} buttonName="post news" />} */}
         </div>

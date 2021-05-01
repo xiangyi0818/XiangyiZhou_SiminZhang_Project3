@@ -70,11 +70,16 @@ export default class Comment extends React.Component {
     render(){
 
         return(
-            <div>
+            <div className="container">
+
                 <div>
-                    
-                creator: {this.props.username},
-                creationTime: {this.props.creationTime}
+                    <span className="">   
+                    creator: {this.props.username},
+                    </span>
+
+                    <span>
+                    creationTime: {this.props.creationTime}
+                    </span>
                 </div>
 
                 <div>
