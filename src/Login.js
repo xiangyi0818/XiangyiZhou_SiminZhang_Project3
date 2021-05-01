@@ -113,7 +113,7 @@ export default class Login extends React.Component{
            <NavBar/>
             <div>
                 username:<input type="text" value={this.state.username1} onChange={e => this.setState({username1: e.target.value})}></input>
-                password:<input type="text" value={this.state.password1} onChange={e => this.setState({password1: e.target.value})}></input>
+                password:<input type="password" value={this.state.password1} onChange={e => this.setState({password1: e.target.value})}></input>
                 <button onClick={() => this.onClickLogin(this.state.username1,this.state.password1)}>Log in</button>
                 {this.showWarning()}
                 {this.getRedirect()}
