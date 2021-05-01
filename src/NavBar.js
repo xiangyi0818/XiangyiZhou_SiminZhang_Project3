@@ -45,12 +45,12 @@ export default class NavBar extends React.Component{
         // console.log("navbar")
         if (this.state.username !== ""){
             return (
-                <div>
-                <button><Link to={'/'}><strong>Home</strong></Link></button>
-                <button><strong>{this.state.username}</strong></button>
+                <div className="navbar">
+                    <button className="nav-button"><Link className="link" to={'/'}><strong>Home</strong></Link></button>
+                    <button className="nav-button"><strong>{this.state.username}</strong></button>
 
-                <button><Link to={'/createnews/'}><strong>Post News</strong></Link></button>
-                <button onClick={() => this.onClickLogout()}>log out</button>
+                    <button className="nav-button"><Link className="link" to={'/createnews/'}><strong>Post News</strong></Link></button>
+                    <button className="nav-button" onClick={() => this.onClickLogout()}>log out</button>
                 </div>)
         }
         return(
