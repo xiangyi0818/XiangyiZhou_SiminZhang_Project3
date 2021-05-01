@@ -30,6 +30,9 @@ router.post('/authenticate', function (req, res) {
     // console.log("login user")
     userAccessor.findUserByUsername(username)
         .then((user) => {
+            if (user === null){
+                return res.status(403).send("The username does not exist");
+            }
             user.comparePassword(password, (error, match) => {
                 if (match) {
                     const payload = {username};
@@ -46,7 +49,7 @@ router.post('/authenticate', function (req, res) {
                     // Note that we are returning the username, but that isn't as necessary anymore
                     // unless we want to reference that on the frontend
                     res.cookie('token', token, {httpOnly: true})
-                    console.log("log in", token);
+                    // console.log("log in", token);
                     return res.status(200).send({username});
                 }
                 // console.log(response)

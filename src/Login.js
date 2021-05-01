@@ -17,6 +17,7 @@ export default class Login extends React.Component{
           redirect:false,
           misMatch:false,
           blankInput:false,
+          notFindUser:false,
         }
       }
 
@@ -47,31 +48,16 @@ export default class Login extends React.Component{
                 })
             }
             )
-        .catch((error) => {this.setState({misMatch: true})})
+        .catch((error) => {
+            if (error.response.data === "The username does not exist"){
+                this.setState({notFindUser:true})
+            }
+            else
+            {this.setState({misMatch: true})}})
         // window.location.href = '/'
 
     }
 
-    // onClickSignUp=(username,password)=> {
-    //     // let history = useHistory();
-    //     // console.log("sign up user")
-    //         const newSignUp = {
-    //             username: username,
-    //             password: password,
-    //         };
-          
-    //         Axios.post('http://localhost:8000/api/user/', newSignUp,  {withCredentials: true})
-    //         .then(()=>{this.getUser();
-    //         this.setState({
-    //             redirect:true
-    //         })})
-    //         .catch(error => console.error(error))
-    
-    //         // history.push("/");
-    //         // window.location.href = '/'
-
-
-    //     }
 
     getRedirect=()=>{
         if (this.state.redirect){
@@ -89,10 +75,17 @@ export default class Login extends React.Component{
                </div>
             ) 
         }
-        if (this.state.blankInput){
+        else if (this.state.blankInput){
             warningMessage.push(
                 <div>
                 <strong>username and password must be filled!</strong>
+               </div>
+            ) 
+        }
+        else if (this.state.notFindUser){
+            warningMessage.push(
+                <div>
+                <strong>username does not exist!</strong>
                </div>
             ) 
         }

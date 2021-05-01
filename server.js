@@ -4,8 +4,8 @@ const app = express();
 const mongoose = require('mongoose');
 // const mongoDBEndpoint = 'mongodb://127.0.0.1/collection_name';
 // const mongoDBEndpoint = "mongodb+srv://Xiangyi:banana1234@project3.0zkrp.mongodb.net/collection_name?retryWrites=true&w=majority"
-// const mongoDBEndpoint = process.env.MONGODB_URI||'mongodb://127.0.0.1/collection_name';
 const mongoDBEndpoint = process.env.MONGODB_URI||'mongodb://127.0.0.1/collection_name';
+// const mongoDBEndpoint = process.env.MONGODB_URI||'mongodb://127.0.0.1/collection_name';
 
 mongoose.connect(mongoDBEndpoint, { useNewUrlParser: true });
 
@@ -50,8 +50,8 @@ app.use('/api/user',user);
 
 
 app.get('*', function (req, res) {
-//   res.sendFile(path.join(__dirname, 'build', 'index.html'));
-    res.send("this is a dummy server");
+  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+    // res.send("this is a dummy server");
 });
 
 app.listen(process.env.PORT || 8000, () => {
