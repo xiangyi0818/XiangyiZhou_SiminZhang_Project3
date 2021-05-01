@@ -46,6 +46,8 @@ export default class NavBar extends React.Component{
         if (this.state.username !== ""){
             return (
                 <div className="navbar">
+                    <p>Hacky News</p>
+                    
                     <button className="nav-button"><Link className="link" to={'/'}><strong>Home</strong></Link></button>
                     <button className="nav-button"><strong>{this.state.username}</strong></button>
 
