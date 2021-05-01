@@ -1,10 +1,9 @@
 .container {
     display: grid;
     grid-template-columns: 1fr 5fr 1fr;
-    grid-template-rows: minmax(min-content,10px) minmax(min-content,10px) 4fr;
+    grid-template-rows: minmax(min-content,10px) 6fr;
     grid-template-areas: 
-    "nav nav nav"
-    "header header header"
+    "leftsidebar nav rightsidebar"
     "leftsidebar maincontent rightsidebar";
 
 }
@@ -15,12 +14,14 @@
     display: flex;
     justify-content: center; 
     align-items: center;
-    margin: 0;
+
+
 
 }
 
 .main-nav {
     grid-area: nav;
+
 }
 
 
@@ -43,4 +44,5 @@
     grid-area: rightsidebar;
   
 }
+
 

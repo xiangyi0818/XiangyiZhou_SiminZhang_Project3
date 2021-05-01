@@ -104,16 +104,28 @@ export default class Login extends React.Component{
 
     render(){
         return(
-            <div>
-                <NavBar/>
-            <div>
+            <div className="container">
+                <div className="main-nav">
+                    <NavBar/>
+                <div>
+
+
+            <h3>Sign up</h3>
+
                 {/* {renderUser} */}
+                <div className="username">
                 username:<input type="text" value={this.state.username} onChange={e => this.setState({username: e.target.value})}></input>
+                </div>
+
+                <div className="password">
                 password:<input type="text" value={this.state.password} onChange={e => this.setState({password: e.target.value})}></input>
+                </div>
+                
                 <button onClick={() => this.onClickSignUp()}>Sign Up</button>   
                 {this.showWarning()}         
                 {this.getRedirect()}
                 </div>
+            </div>
             </div>
         )
     }

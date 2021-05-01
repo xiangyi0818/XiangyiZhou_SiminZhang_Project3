@@ -55,6 +55,8 @@ export default class NavBar extends React.Component{
         }
         return(
             <div className="navbar">
+
+                <p>Hacky News</p>
                 
                 <button className="nav-button"><Link className="link" to={'/'}><strong>Home</strong></Link></button>
                 

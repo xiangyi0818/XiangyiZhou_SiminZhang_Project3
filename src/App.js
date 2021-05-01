@@ -142,9 +142,6 @@ onClickEdit=(newsId, content)=> {
           <NavBar/>
         </div>
 
-        <div className="main-header">
-          <h3>Hacky News</h3>
-        </div>
 
         <div className="main-content">
           <h2>{renderNews}</h2>
