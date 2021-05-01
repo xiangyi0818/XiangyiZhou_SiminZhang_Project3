@@ -1,6 +1,6 @@
 import Axios from 'axios';
 import React from 'react';
-import {Link} from 'react-router-dom';
+import {Link, matchPath} from 'react-router-dom';
 import NavBar from './NavBar';
 
 
@@ -12,10 +12,10 @@ export default class CreateNews extends React.Component{
         url:"",
         content:"",
         username:"",
-        newsList:[],
         redirect:false,
         warning1:false,
         warning2:false,
+        newsId:"",
       }
     }
     onClickCreate=()=> {
@@ -40,11 +40,15 @@ export default class CreateNews extends React.Component{
             content: this.state.content,
         };
         Axios.post('/api/news', newNews, {withCredentials: true})
-            .then()
+            .then((response)=>{ window.location.href = `/news/${response.data._id}` })
             .catch(error => console.error(error))
-            window.location.href = '/'
+            
+            
         }
       }
+    
+    // getNewsId=()=>{
+    // }
 
     getUserName =()=>{
         Axios.post(`/api/user/username`,{} ,{withCredentials: true})
@@ -58,10 +62,37 @@ export default class CreateNews extends React.Component{
 
     componentDidMount() {
         this.getUserName();
+        // console.log(window.location.pathname);
+        const matchResult = matchPath(window.location.pathname, {
+            path: "/createnews/:newsId",
+            exact: true,
+            strict: true
+          });
+        if (matchResult !== null){
+            const newsId = matchResult.params.newsId;
+            this.GetSpecificNews(newsId)
+
+        }
+    }
+
+    GetSpecificNews=(newsId)=>{  
+        const new_from_response = Axios.get(`/api/news/${newsId}`)
+            .then((response) => 
+                {
+                    // console.log("response",response.data)
+                    this.setState({content: response.data.content});
+                    this.setState({title: response.data.title});
+                    this.setState({url: response.data.url});
+                }
+                )
+            .catch(error => console.error(error))
+        // console.log("new_from_response")
+        // console.log(new_from_response)
+        return new_from_response;
     }
 
     showWarning(){
-        console.log("showwarning", this.state.warning)
+        // console.log("showwarning", this.state.warning)
         if (this.state.warning1 === true){
             return <div><strong>Please fill either url or content.Please do not fill them both.</strong></div>
         }

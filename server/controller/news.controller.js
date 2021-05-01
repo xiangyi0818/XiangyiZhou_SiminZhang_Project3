@@ -35,6 +35,7 @@ router.post('/', authParser,(req, res) => {
     // So we can safely pass it the entire body
     // console.log("create news")
     // console.log(req.body.url,req.body.content)
+
     return newsAccessor.insertNews(req.body)
         .then((response) => res.status(200).send(response),
             (error) => res.status(404).send(`Error finding News:${error}`))
@@ -54,9 +55,9 @@ router.delete('/:id',authParser, (req, res)=>{
 
 router.put('/:newsId', authParser,(req, res) => {
     const newNews = req.body;
-    console.log("put request", req.body)
+    // console.log("put request", req.body)
     return newsAccessor.putNewsByNewsId(req.params.newsId, newNews)
-        .then((response) => {console.log(response);res.status(200).send(response)},
+        .then((response) => {res.status(200).send(response)},
             (error) => res.status(404).send(`Error finding Comment:${error}`))
             // console.log(response)
 });

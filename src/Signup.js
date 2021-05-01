@@ -9,13 +9,11 @@ export default class Login extends React.Component{
     constructor(props){
         super(props);
         this.state={
-          username1:[],
-          password1:[],
-          user:[],
-          username2:[],
-          password2:[],
+          username:"",
+          password:"",
           redirect:false,
           warning:false,
+          blank:false,
         }
       }
 
@@ -40,14 +38,18 @@ export default class Login extends React.Component{
 
     // }
 
-    onClickSignUp=(username,password)=> {
+    onClickSignUp=()=> {
         // let history = useHistory();
         // console.log("sign up user")
             const newSignUp = {
-                username: username,
-                password: password,
+                username: this.state.username,
+                password: this.state.password,
             };
           
+            if (this.state.username === "" || this.state.password === ""){
+                this.setState({blank:true})
+                return 
+            }
             Axios.post('/api/user/', newSignUp,  {withCredentials: true})
             .then((response)=>{
                 // console.log("signup response", response)
@@ -79,12 +81,17 @@ export default class Login extends React.Component{
                         <strong>username already exist! Please choose another username!</strong>
                     </div>
         }
+        else if(this.state.blank){
+            return <div>
+                        <strong>Please fill both username and password!</strong>
+                    </div>
+        }
     }
 
     getUser=()=>{
         Axios.get(`/api/user`)
             .then((response) => {
-                console.log(response)
+                // console.log(response)
                 this.setState({
                     user: response.data,
         })}) 
@@ -101,9 +108,9 @@ export default class Login extends React.Component{
            <NavBar/>
             <div>
                 {/* {renderUser} */}
-                username:<input type="text" value={this.state.username2} onChange={e => this.setState({username2: e.target.value})}></input>
-                password:<input type="text" value={this.state.password2} onChange={e => this.setState({password2: e.target.value})}></input>
-                <button onClick={() => this.onClickSignUp(this.state.username2,this.state.password2)}>Sign Up</button>   
+                username:<input type="text" value={this.state.username} onChange={e => this.setState({username: e.target.value})}></input>
+                password:<input type="text" value={this.state.password} onChange={e => this.setState({password: e.target.value})}></input>
+                <button onClick={() => this.onClickSignUp()}>Sign Up</button>   
                 {this.showWarning()}         
                 {this.getRedirect()}
                 </div>

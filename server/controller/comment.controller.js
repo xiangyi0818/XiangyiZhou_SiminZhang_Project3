@@ -59,7 +59,8 @@ router.delete('/:id',authParser, (req, res)=>{
 router.delete('/',authParser, (req, res)=>{
     // console.log("get delete request")
     if (req.query.newsId !== undefined) {
-        return commentAccessor.deletelCommentById(req.query.newsId)
+
+        return commentAccessor.deletelCommentByNewsId(req.query.newsId)
              .then((response) => res.status(200).send(response),
                  (error) =>  res.status(404).send(`Error finding News:${error}`));
      }
