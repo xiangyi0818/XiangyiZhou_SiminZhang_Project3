@@ -1,6 +1,7 @@
 import {Link, Redirect} from 'react-router-dom';
 import React from 'react';
 import Axios from 'axios';
+import "./NavBar.css";
 
 
 export default class NavBar extends React.Component{
@@ -53,10 +54,13 @@ export default class NavBar extends React.Component{
                 </div>)
         }
         return(
-            <div>
-                <button><Link to={'/'}><strong>Home</strong></Link></button>
-                <button><Link to={'/signup/'}><strong>Sign up</strong></Link></button>
-                <button><Link to={'/login/'}><strong>Log in</strong></Link></button>
+            <div className="navbar">
+                
+                <button className="nav-button"><Link className="link" to={'/'}><strong>Home</strong></Link></button>
+                
+                <button className="nav-button"><Link className="link" to={'/signup/'}><strong>Sign up</strong></Link></button>
+                
+                <button className="nav-button"><Link className="link" to={'/login/'}><strong>Log in</strong></Link></button>
             </div>
 
         )  

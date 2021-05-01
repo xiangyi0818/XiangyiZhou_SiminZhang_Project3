@@ -105,7 +105,7 @@ export default class Login extends React.Component{
     render(){
         return(
             <div>
-           <NavBar/>
+                <NavBar/>
             <div>
                 {/* {renderUser} */}
                 username:<input type="text" value={this.state.username} onChange={e => this.setState({username: e.target.value})}></input>

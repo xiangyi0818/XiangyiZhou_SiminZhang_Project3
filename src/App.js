@@ -143,7 +143,7 @@ onClickEdit=(newsId, content)=> {
         </div>
 
         <div className="main-header">
-          <h2>Hacky News</h2>
+          <h3>Hacky News</h3>
         </div>
 
         <div className="main-content">

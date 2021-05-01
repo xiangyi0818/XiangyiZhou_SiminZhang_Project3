@@ -1,0 +1,38 @@
+.navbar {
+    grid-area: nav;
+    display: flex;
+    border: none;
+    justify-content: center; 
+    align-items: center;
+    margin: 0;
+    background-color: #f3a316;
+    margin-bottom: 10px;
+
+}
+
+.link {
+    color:white;
+}
+
+.nav-button{
+    background-color: #f3a316; /* Green */
+    border: none;
+    color: white;
+    padding: 5px 32px ;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+
+
+
+.nav-button:hover {
+    background-color: rgb(236, 129, 28);
+}
+
+.nav-button {
+
+}
