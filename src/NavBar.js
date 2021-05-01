@@ -47,11 +47,13 @@ export default class NavBar extends React.Component{
             return (
                 <div className="navbar">
                     <p>Hacky News</p>
-                    
+
                     <button className="nav-button"><Link className="link" to={'/'}><strong>Home</strong></Link></button>
-                    <button className="nav-button"><strong>{this.state.username}</strong></button>
+
 
                     <button className="nav-button"><Link className="link" to={'/createnews/'}><strong>Post News</strong></Link></button>
+
+                    <button className="nav-button"><strong>{this.state.username}</strong></button>
                     <button className="nav-button" onClick={() => this.onClickLogout()}>log out</button>
                 </div>)
         }
