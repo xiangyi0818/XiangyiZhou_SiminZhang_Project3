@@ -217,7 +217,6 @@ const ViewNews = ({ match, location }) => {
         </div>
         <div>
         <div>
-        <strong>News Content: </strong>
         {newsContent}
         </div>
         <div>
