@@ -30,7 +30,7 @@
 .more-button{
     background-color:chocolate;
 } */
-/* @media screen and (max-width:900px) {
+@media screen and (max-width:900px) {
     .nav-button{
         background-color: #f3a316; 
         border: none;
@@ -43,11 +43,11 @@
         cursor: pointer;
     }
 
-    p{
+    /* p{
         font-size: 12px;
-    }
+    } */
 
-} */
+}
 
 
 
