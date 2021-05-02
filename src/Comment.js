@@ -73,19 +73,7 @@ export default class Comment extends React.Component {
 
         return(
             <div>
-
-<<<<<<< HEAD
-                <div className="comment-container">
-                    <div id="comment-creator">   
-                    creator: {this.props.username},
-                    </div>
-
-                    <div id="comment-creationTime">
-                    creationTime: {this.props.creationTime}
-                    </div>
-               
-=======
-                <div>
+               <div>
                     {/* <span id="comment-creator">    */}
                     <div>
                     creator: {this.props.username},
@@ -97,19 +85,19 @@ export default class Comment extends React.Component {
                     {/* </span> */}
                     </div>
                 
->>>>>>> 5910b522bbc7358de464de51a3bb8c4058120a61
 
                     <div>
                     content: {this.props.content}
                     </div>
                     
                 </div>
-            </div>
+            <div>
                 {/* <input type="text" value={this.state.content} onChange={e => this.setState({content: e.target.value})}></input> */}
                 {this.getOptionalInput()}
                 {/* <button onClick={() => {this.setState({input:true});this.props.onClickEdit(this.props.commentId, this.state.content)}}>edit</button> */}
                 {this.compareUsername()}
                 
+            </div>
             </div>
         )
     }
