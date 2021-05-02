@@ -208,24 +208,24 @@ const ViewNews = ({ match, location }) => {
           {/* <h7>News ID: </h7>
           {newsId} */}
           <div className="title">
-          {newsTitle}
+          <h2>{newsTitle}</h2>
           </div>
           <div>
   
-            <div>
+            {/* <div> */}
             <h7>News Creator: </h7>
-            {username}
-            </div>
+            {username},
+            {/* </div> */}
             
             {/* <div>
             <h7>News URL: </h7>
             {newsURL}
             </div> */}
 
-            <div>
+            {/* <div> */}
             <h7>newsCreationTime:</h7>
             {newsCreationTime}
-            </div>
+            {/* </div> */}
 
           </div>
 

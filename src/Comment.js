@@ -73,25 +73,26 @@ export default class Comment extends React.Component {
 
         return(
             <div>
+                <div>
+                       ---------------------------
+                   </div>
                <div>
                     {/* <span id="comment-creator">    */}
-                    <div>
-                    creator: {this.props.username}
+                    {/* <div> */}
+                    creator: {this.props.username},
                     {/* </span> */}
-                    </div>
-                    <div>
+                    {/* </div>
+                    <div> */}
                     {/* <span id="comment-creationTime"> */}
                     creationTime: {this.props.creationTime}
                     {/* </span> */}
-                    </div>
+                    {/* </div> */}
                 
                   
                     <div>
                     content: {this.props.content}
                     </div>
-                    <div>
-                       ---------------------------
-                   </div>
+                    
                     
                 </div>
             <div>
