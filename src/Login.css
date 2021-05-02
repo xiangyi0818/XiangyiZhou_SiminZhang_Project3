@@ -6,3 +6,16 @@
 .password {
     margin-bottom:20px;
 }
+
+#input{
+    background-color: #f3a316;
+    border: none;
+    color: white;
+    padding: 3px 3px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin: 4px 2px;
+    cursor: pointer;
+    font-size: 12px;
+}

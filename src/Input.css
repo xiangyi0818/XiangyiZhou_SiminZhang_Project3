@@ -1,27 +1,8 @@
-.title {
-    margin-bottom:20px;
-}
-
-
-.url {
-    margin-bottom:20px;
-}
-
-.body {
-    margin-bottom:20px;
-}
-
-
-
-.createnewsbutton {
-    margin-bottom: 20px;
-}
-
-#input{
+#input {
     background-color: #f3a316;
     border: none;
     color: white;
-    padding: 3px 3px;
+    padding: 6px 6px;
     text-align: center;
     text-decoration: none;
     display: inline-block;

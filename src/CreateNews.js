@@ -134,7 +134,7 @@ export default class CreateNews extends React.Component{
                 </div>
 
                 <div className="createnewsbutton">
-                    <button onClick={() => this.onClickCreate()}>Submit</button>
+                    <button id="input" onClick={() => this.onClickCreate()}>Submit</button>
                 
                 </div>
 
