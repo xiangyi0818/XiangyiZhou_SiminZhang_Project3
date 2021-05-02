@@ -17,7 +17,7 @@
 
 
 .nav-button{
-    background-color: #f3a316; /* Green */
+    background-color: #f3a316; 
     border: none;
     color: white;
     padding: 5px 40px ;
@@ -28,6 +28,24 @@
     cursor: pointer;
 }
 
+@media screen and (max-width:700px) {
+    .nav-button{
+        background-color: #f3a316; 
+        border: none;
+        color: white;
+        padding: 5px 5px ;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 12px;
+        cursor: pointer;
+    }
+
+    p{
+        font-size: 12px;
+    }
+
+}
 
 
 
