@@ -76,7 +76,7 @@ export default class Comment extends React.Component {
                <div>
                     {/* <span id="comment-creator">    */}
                     <div>
-                    creator: {this.props.username},
+                    creator: {this.props.username}
                     {/* </span> */}
                     </div>
                     <div>
