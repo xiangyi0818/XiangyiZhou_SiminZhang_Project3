@@ -28,6 +28,7 @@
 .main-content {
     grid-area: maincontent;
     margin: 0;
+    background-color: beige;
 
 }
 
