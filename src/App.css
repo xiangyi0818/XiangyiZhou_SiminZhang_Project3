@@ -28,7 +28,8 @@
 .main-content {
     grid-area: maincontent;
     margin: 0;
-    background-color: beige;
+    padding-left: 20px;
+    background-color: rgb(238, 222, 203);
 
 }
 
