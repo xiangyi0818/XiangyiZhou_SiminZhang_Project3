@@ -230,9 +230,13 @@ const ViewNews = ({ match, location }) => {
             
             {/* {console.log("comment", comment)} */}
             { <Input onClick= {onClickComment} buttonName="post comments" />}
+
             {mustLogin()}
+
             {comment.map((value, index)=> <Comment commentId={value._id} content={value.content} username={value.username} newsId={value.newsId} 
+
             creationTime={value.creationTime} key={index} GetCommentList={GetCommentList} updateRequest={()=>setNumRequest(numRequest+1)}
+            
             onClickDeleteComment={onClickDeleteComment}/>)}
           </div>
         </div>
