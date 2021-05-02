@@ -6,6 +6,7 @@ import ViewNews from './ViewNews';
 import SignUp from './Signup';
 import Login from './Login';
 import CreateNews from './CreateNews';
+import "./index.css";
 
 ReactDOM.render(
   <React.StrictMode>
