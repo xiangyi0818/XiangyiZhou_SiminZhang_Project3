@@ -61,7 +61,7 @@
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    /* margin: 4px 2px; */
+    margin: 4px 2px;
     cursor: pointer;
     font-size: 10px;
     height:25px;
@@ -77,11 +77,13 @@
 
 @media screen and (max-width:900px) {
     #news-link {
-        font-size: 10px;
+        font-size: 12px;
 
-    
     }
 
+    #comment-link {
+        font-size: 8px;
+    }
 
 
 }
