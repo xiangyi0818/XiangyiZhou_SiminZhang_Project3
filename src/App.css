@@ -5,6 +5,7 @@
     grid-template-areas: 
     "leftsidebar nav rightsidebar"
     "leftsidebar maincontent rightsidebar";
+    background-color: rgb(238, 222, 203);
 
 }
 
@@ -30,7 +31,7 @@
     grid-area: maincontent;
     margin: 0;
     padding: 20px;
-    background-color: rgb(238, 222, 203);
+
 
 }
 
