@@ -43,3 +43,21 @@
 }
 
 
+
+#news-link {
+    color: black;
+}
+
+#news-comment-button {
+    background-color: #f3a316;
+    border: none;
+    color: white;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin: 4px 2px;
+    cursor: pointer;
+    font-size: 12px;
+
+}
