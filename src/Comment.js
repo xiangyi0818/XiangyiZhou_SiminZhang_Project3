@@ -60,9 +60,10 @@ export default class Comment extends React.Component {
         const renderButton = []
         if (username1 === username2){
             renderButton.push(
+
             <div>
-                <button onClick={() => {this.onClickEdit()}}>edit</button>
-                <button onClick={() => {this.props.onClickDeleteComment(this.props.commentId)}}>delete</button>
+                <button id="comment-edit-button" onClick={() => {this.onClickEdit()}}>edit</button>
+                <button id="comment-delete-button" onClick={() => {this.props.onClickDeleteComment(this.props.commentId)}}>delete</button>
             </div>)  
             return renderButton
         }
@@ -71,20 +72,22 @@ export default class Comment extends React.Component {
     render(){
 
         return(
-            <div className="container">
+            <div>
 
-                <div>
-                    <span id="comment-creator">   
+                <div className="comment-container">
+                    <div id="comment-creator">   
                     creator: {this.props.username},
-                    </span>
+                    </div>
 
-                    <span id="comment-creationTime">
+                    <div id="comment-creationTime">
                     creationTime: {this.props.creationTime}
-                    </span>
-                </div>
+                    </div>
+               
 
-                <div>
-                content: {this.props.content}
+                    <div>
+                    content: {this.props.content}
+                    </div>
+                    
                 </div>
 
                 {/* <input type="text" value={this.state.content} onChange={e => this.setState({content: e.target.value})}></input> */}

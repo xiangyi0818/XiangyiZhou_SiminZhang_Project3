@@ -88,6 +88,11 @@ onClickEdit=(newsId, content)=> {
   .then(this.getNewsList())
   .catch(error => console.error(error))
 }
+
+
+
+
+
   render(){
     const renderNews = [];
     let newsLink;
@@ -106,14 +111,17 @@ onClickEdit=(newsId, content)=> {
           // console.log(newsLink)
           renderNews.push(
               <div className="news">
-                  <a href={newsLink}>{news.title}</a>
+
+                  <a id="news-link" href={newsLink}>{news.title}</a>
                   <div>
                     {/* <button onClick={() => this.onClickDelete(news._id)}>delete</button> */}
                     {/* <input type="text" value={this.state.content} onChange={e => this.setState({content: e.target.value})}></input> */}
                     {/* <button onClick={() => this.onClickEdit(news._id)}>edit</button> */}
                   </div>
-                  <button>
-                    <Link to={{pathname:`/news/${news._id}`}}><p>Comments</p></Link></button>
+
+                  <button id="news-comment-button">
+                    <Link to={{pathname:`/news/${news._id}`}}><p>Comments</p></Link>
+                  </button>
                     {/* <Link to={"/news"}><p>Comments</p></Link></button> */}
               </div>
           )
