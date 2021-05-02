@@ -212,19 +212,19 @@ const ViewNews = ({ match, location }) => {
   
             <div>
             <strong>News Creator: </strong>
-            {username},
+            {username}
             </div>
             
             <div>
             <strong>News URL: </strong>
-            {newsURL},
+            {newsURL}
             </div>
 
             <div>
             <strong>newsCreationTime:</strong>
             {newsCreationTime}
             </div>
-            
+
           </div>
 
           <div>
