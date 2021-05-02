@@ -139,7 +139,6 @@ export default class CreateNews extends React.Component{
                 </div>
 
                 {this.showWarning()}
-                </div>
             </div>
         )
     }
