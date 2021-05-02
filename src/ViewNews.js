@@ -88,7 +88,7 @@ const ViewNews = ({ match, location }) => {
   const mustLogin=()=>{
     if (notlogin){
       return <div>
-        <strong>Please sign up or login to post comments!</strong>
+        <h7>Please sign up or login to post comments!</h7>
       </div>
 
     }
@@ -205,24 +205,25 @@ const ViewNews = ({ match, location }) => {
         </div>
 
         <div className="main-content">
-          {/* <strong>News ID: </strong>
+          {/* <h7>News ID: </h7>
           {newsId} */}
+          <div className="title">
           {newsTitle}
-
+          </div>
           <div>
   
             <div>
-            <strong>News Creator: </strong>
+            <h7>News Creator: </h7>
             {username}
             </div>
             
-            <div>
-            <strong>News URL: </strong>
+            {/* <div>
+            <h7>News URL: </h7>
             {newsURL}
-            </div>
+            </div> */}
 
             <div>
-            <strong>newsCreationTime:</strong>
+            <h7>newsCreationTime:</h7>
             {newsCreationTime}
             </div>
 

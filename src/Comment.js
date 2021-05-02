@@ -85,10 +85,13 @@ export default class Comment extends React.Component {
                     {/* </span> */}
                     </div>
                 
-
+                  
                     <div>
                     content: {this.props.content}
                     </div>
+                    <div>
+                       ---------------------------
+                   </div>
                     
                 </div>
             <div>
