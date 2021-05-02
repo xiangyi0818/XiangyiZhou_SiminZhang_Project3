@@ -90,7 +90,7 @@ export default class Comment extends React.Component {
                 
                   
                     <div>
-                    content: {this.props.content}
+                    {this.props.content}
                     </div>
                     
                     

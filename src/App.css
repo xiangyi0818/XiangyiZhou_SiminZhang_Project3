@@ -54,9 +54,9 @@
 }
 
 #news-comment-button {
-    /* background-color: #f3a316; */
+    background-color:rgb(241, 232, 214);
     border: none;
-    color: #f3a316;
+    color:white;
     padding: 2px 2px;
     text-align: center;
     text-decoration: none;
@@ -78,8 +78,6 @@
 @media screen and (max-width:900px) {
     #news-link {
         font-size: 25px;
-
-    
     }
 
 
