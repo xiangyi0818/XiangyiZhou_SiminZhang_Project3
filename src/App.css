@@ -47,24 +47,21 @@
   
 }
 
-p{
-    color:white;
-}
 
 
 #news-link {
-    color: black;
+    color: black
 }
 
 #news-comment-button {
     background-color:rgb(241, 232, 214);
     border: none;
-    color:white;
+    color:black;
     padding: 2px 2px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    margin: 4px 2px;
+    /* margin: 4px 2px; */
     cursor: pointer;
     font-size: 12px;
     height:25px;
@@ -83,10 +80,6 @@ p{
         font-size: 25px;
     }
 
-    #comment-link {
-        font-size: 6px;
-    }
 
 
 }
-
