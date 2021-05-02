@@ -62,8 +62,8 @@ export default class Comment extends React.Component {
             renderButton.push(
 
             <div>
-                <button id="comment-edit-button" onClick={() => {this.onClickEdit()}}>edit</button>
-                <button id="comment-delete-button" onClick={() => {this.props.onClickDeleteComment(this.props.commentId)}}>delete</button>
+                <button className="input" id="comment-edit-button" onClick={() => {this.onClickEdit()}}>edit</button>
+                <button className="input" id="comment-delete-button" onClick={() => {this.props.onClickDeleteComment(this.props.commentId)}}>delete</button>
             </div>)  
             return renderButton
         }

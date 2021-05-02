@@ -5,6 +5,7 @@ import { useState } from 'react';
 import Input from './Input';
 import Comment from './Comment';
 import NavBar from './NavBar';
+import './ViewNews';
 
 
 const ViewNews = ({ match, location }) => {
@@ -166,8 +167,8 @@ const ViewNews = ({ match, location }) => {
     if (showButton){
       renderButton.push(
         <div>        
-        <button onClick={()=> onClickEditNews(newsId)}>edit</button>
-        <button onClick={() => onClickDeleteNews(newsId)}>delete</button>
+        <button className="input" onClick={()=> onClickEditNews(newsId)}>edit</button>
+        <button className="input" onClick={() => onClickDeleteNews(newsId)}>delete</button>
         </div>
       )
       return renderButton  }

@@ -121,7 +121,7 @@ export default class Login extends React.Component{
                 password:<input type="text" value={this.state.password} onChange={e => this.setState({password: e.target.value})}></input>
                 </div>
                 
-                <button onClick={() => this.onClickSignUp()}>Sign Up</button>   
+                <button id="input" onClick={() => this.onClickSignUp()}>Sign Up</button>   
                 {this.showWarning()}         
                 {this.getRedirect()}
                 </div>
