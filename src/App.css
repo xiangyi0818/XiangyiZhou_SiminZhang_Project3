@@ -27,7 +27,6 @@
 
 .main-content {
     grid-area: maincontent;
-    display: flex; 
     margin: 0;
 
 }
