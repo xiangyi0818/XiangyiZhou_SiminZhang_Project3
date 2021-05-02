@@ -74,19 +74,22 @@ export default class Comment extends React.Component {
             <div className="container">
 
                 <div>
-                    <span id="comment-creator">   
+                    {/* <span id="comment-creator">    */}
+                    <div>
                     creator: {this.props.username},
-                    </span>
-
-                    <span id="comment-creationTime">
+                    {/* </span> */}
+                    </div>
+                    <div>
+                    {/* <span id="comment-creationTime"> */}
                     creationTime: {this.props.creationTime}
-                    </span>
-                </div>
+                    {/* </span> */}
+                    </div>
+                
 
                 <div>
                 content: {this.props.content}
                 </div>
-
+            </div>
                 {/* <input type="text" value={this.state.content} onChange={e => this.setState({content: e.target.value})}></input> */}
                 {this.getOptionalInput()}
                 {/* <button onClick={() => {this.setState({input:true});this.props.onClickEdit(this.props.commentId, this.state.content)}}>edit</button> */}
