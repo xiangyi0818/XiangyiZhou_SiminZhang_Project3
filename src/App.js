@@ -120,7 +120,7 @@ onClickEdit=(newsId, content)=> {
                   </div>
 
                   <button id="news-comment-button">
-                    <Link to={{pathname:`/news/${news._id}`}}><p>Comments</p></Link>
+                    <Link id="comment-link" to={{pathname:`/news/${news._id}`}}><p>Comments</p></Link>
                   </button>
                     {/* <Link to={"/news"}><p>Comments</p></Link></button> */}
               </div>

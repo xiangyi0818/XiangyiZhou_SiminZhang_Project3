@@ -47,6 +47,9 @@
   
 }
 
+p{
+    color:white;
+}
 
 
 #news-link {
@@ -61,7 +64,7 @@
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    /* margin: 4px 2px; */
+    margin: 4px 2px;
     cursor: pointer;
     font-size: 12px;
     height:25px;
@@ -80,6 +83,10 @@
         font-size: 25px;
     }
 
+    #comment-link {
+        font-size: 6px;
+    }
 
 
 }
+
