@@ -65,10 +65,23 @@
     cursor: pointer;
     font-size: 10px;
     height:25px;
-    width:65px
+    width:65px;
+    justify-content: center; 
+    align-items: center;
 
 }
 
 .news {
     margin-bottom: 10px;
+}
+
+@media screen and (max-width:900px) {
+    #news-link {
+        font-size: 10px;
+
+    
+    }
+
+
+
 }
