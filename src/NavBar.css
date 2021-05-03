@@ -13,6 +13,9 @@
     color:white;
 }
 
+.point{
+    cursor: pointer;
+}
 
 
 .nav-button{
@@ -26,6 +29,14 @@
     font-size: 15px;
     cursor: pointer;
 }
+
+.navbar-custom{
+    background: #f3a316
+}
+
+/* .down{
+    background:#f3a316;
+} */
 /* 
 .more-button{
     background-color:chocolate;

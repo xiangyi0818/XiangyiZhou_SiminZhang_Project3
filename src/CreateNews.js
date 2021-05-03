@@ -122,15 +122,27 @@ export default class CreateNews extends React.Component{
                 
                 <div className="main-content">
                 <div className="title">
-                    Title:<input type="text" value={this.state.title} onChange={e => this.setState({title: e.target.value})}></input>
+                    <div>Title</div>
+                    <div>
+                    <input type="text" value={this.state.title} onChange={e => this.setState({title: e.target.value})}></input>
+                    </div>
                 </div>
 
                 <div className="url">
-                    Url:<input type="text" value={this.state.url} onChange={e => this.setState({url: e.target.value})}></input>
+                    <div>
+                    Url
+                    </div>
+                    <div>
+                    <input type="text" value={this.state.url} onChange={e => this.setState({url: e.target.value})}></input>
+
+                    </div>
                 </div>
 
                 <div className="body">
-                    Body:<input type="text" value={this.state.content} onChange={e => this.setState({content: e.target.value})}></input>
+                    <div>Body</div>
+                    <div>
+                    <input className="body" type="text" value={this.state.content} onChange={e => this.setState({content: e.target.value})}></input>
+                    </div>
                 </div>
 
                 <div className="createnewsbutton">

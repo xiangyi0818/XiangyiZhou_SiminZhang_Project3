@@ -88,7 +88,7 @@ const ViewNews = ({ match, location }) => {
   const mustLogin=()=>{
     if (notlogin){
       return <div>
-        <h7>Please sign up or login to post comments!</h7>
+        <strong>Please sign up or login to post comments!</strong>
       </div>
 
     }

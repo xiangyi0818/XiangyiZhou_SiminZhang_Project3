@@ -73,9 +73,8 @@ export default class Comment extends React.Component {
 
         return(
             <div>
-                <div>
-                       ---------------------------
-                   </div>
+                <hr/>
+
                <div>
                     {/* <span id="comment-creator">    */}
                     {/* <div> */}

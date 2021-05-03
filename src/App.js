@@ -123,6 +123,7 @@ onClickEdit=(newsId, content)=> {
                     <Link id="comment-link" to={{pathname:`/news/${news._id}`}}><p>Comments</p></Link>
                   </button>
                     {/* <Link to={"/news"}><p>Comments</p></Link></button> */}
+                    <hr/>
               </div>
           )
         }
